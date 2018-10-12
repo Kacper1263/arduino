@@ -1,7 +1,3 @@
-# Stoper 
-
-My stopwatch project
-
 # Stoper 1.0
 
 <b>Source cod in "stoper_KM.ino"</b>
