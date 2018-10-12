@@ -1,5 +1,7 @@
 # Stoper 1.0
 
+(last update: 12.10.2018)
+
 <b>Source cod in "stoper_KM.ino"</b>
 
 Scheme:
