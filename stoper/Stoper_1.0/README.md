@@ -7,5 +7,5 @@
 Scheme:
 ![Scheme error](https://github.com/Kacper1263/arduino/blob/master/stoper/Stoper_1.0/stoper_KM_bb.png)
 
-Preview video: [See on Youtube] (https://www.youtube.com/embed/9ZXXsBcfOPM)
+Preview video: [See on Youtube](https://www.youtube.com/embed/9ZXXsBcfOPM)
 
