@@ -9,5 +9,3 @@ Preview video: [See on Youtube](https://www.youtube.com/watch?v=9ZXXsBcfOPM)
 Scheme:
 ![Scheme error](https://github.com/Kacper1263/arduino/blob/master/stoper/Stoper_1.0/stoper_KM_bb.png)
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/9ZXXsBcfOPM/0.jpg)](http://www.youtube.com/watch?v=9ZXXsBcfOPM)
-
