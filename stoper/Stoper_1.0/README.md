@@ -8,6 +8,6 @@ Scheme:
 ![Scheme error](https://github.com/Kacper1263/arduino/blob/master/stoper/Stoper_1.0/stoper_KM_bb.png)
 
 Preview video:
-![Preview error](https://github.com/Kacper1263/arduino/blob/master/stoper/Stoper_1.0/video.mp4)
+![Preview error](https://youtu.be/9ZXXsBcfOPM)
 
 
