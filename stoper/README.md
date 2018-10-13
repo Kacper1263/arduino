@@ -2,6 +2,8 @@
 
 (last update: 12.10.2018)
 
+Preview video: [See on Youtube](https://www.youtube.com/watch?v=9ZXXsBcfOPM)
+
 <b>Source cod in "stoper_KM.ino"</b>
 
 Scheme:
