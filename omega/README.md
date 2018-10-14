@@ -4,7 +4,7 @@
 
 <b>Source cod in "Omega.ino"</b>
 
-Scheme:
+Preview:
 ![Scheme error](https://github.com/Kacper1263/arduino/blob/master/omega/photo.jpg)
 
 
