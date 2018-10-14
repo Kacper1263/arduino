@@ -1,6 +1,6 @@
 # Omega logo
 
-(last update: 12.10.2018)
+(last update: 14.10.2018)
 
 <b>Source cod in "Omega.ino"</b>
 
