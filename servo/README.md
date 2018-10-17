@@ -1,9 +1,8 @@
-# Servo 1.0
+# Servo project
 
-(last update: 16.10.2018)
+(last update: 17.10.2018)
 
 
-<b>Source code in "servo_KM.ino"</b>
 
 
 
