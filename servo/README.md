@@ -1,6 +1,6 @@
 # Servo project
 
-(last update: 17.10.2018)
+(last update: 20.10.2018)
 
 
 
