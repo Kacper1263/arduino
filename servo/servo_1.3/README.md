@@ -2,6 +2,7 @@
 
 (last update: 21.10.2018)
 
+Preview video: [See on Youtube](https://www.youtube.com/watch?v=2atf3WDNdzY)
 
 <b>Source code in "servo_KM.ino"</b>
 
