@@ -32,7 +32,7 @@ void setup() {
 	Serial.begin(9600);
 
 
-	Serial.println("");
+	Serial.println("");						// serial monitor menu print
 	Serial.println("Menu:");
 	Serial.println("0 - Buzzer off");
 	Serial.println("1 - Buzzer on");
@@ -46,7 +46,7 @@ void setup() {
 
 void loop() {
 
-	if (Serial.available() > 0) {
+	if (Serial.available() > 0) {						// serial monitor menu control
 		optionIn = Serial.readString().toInt();
 		
 		switch (optionIn) {
@@ -96,7 +96,7 @@ void loop() {
 		}
 	}
 	
-	if (digitalRead(13) == LOW) {
+	if (digitalRead(13) == LOW) {		//button press
 		menu = menu + 1;
 		if (menu == 3) {
 			menu = 0;
