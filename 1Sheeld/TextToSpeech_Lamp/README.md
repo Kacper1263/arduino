@@ -1,3 +1,3 @@
-# Text To Speech
+# Text To Speech Lamp
 
-Text To Speech projects
+Text To Speech Lamp projects
