@@ -3,6 +3,8 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 28.10.2018 - <b>Text to Speech Lamp 1.2</b> added
+* 28.10.2018 - <b>Text to Speech Lamp 1.1</b> added
 * 28.10.2018 - <b>Text to Speech Lamp 1.0</b> added
 * 28.10.2018 - <b>1Sheeld</b> folder added
 * 26.10.2018 - <b>New version of Servo 1.3.1 experimental</b> added
