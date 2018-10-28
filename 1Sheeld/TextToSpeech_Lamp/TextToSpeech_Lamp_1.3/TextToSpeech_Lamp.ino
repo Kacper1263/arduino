@@ -173,19 +173,19 @@ void pinToInt()									//convert e.g. "five" to "5"
 		pinNb = 1;
 		TextToSpeech.say("OK");
 	}
-	if (pin == "two" || pin == "to") {
+	else if (pin == "two" || pin == "to") {
 		pinNb = 2;
 		TextToSpeech.say("OK");
 	}
-	if (pin == "three" || pin == "free") {
+	else if (pin == "three" || pin == "free") {
 		pinNb = 3;
 		TextToSpeech.say("OK");
 	}
-	if (pin == "four" || pin ==  "for" || pin == "far") {
+	else if (pin == "four" || pin ==  "for" || pin == "far") {
 		pinNb = 4;
 		TextToSpeech.say("OK");
 	}
-	if (pin == "five") {
+	else if (pin == "five") {
 		pinNb = 5;
 		TextToSpeech.say("OK");
 	}
