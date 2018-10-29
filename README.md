@@ -3,6 +3,7 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 29.10.2018 - <b>Omega TFT_LCD</b> added
 * 28.10.2018 - <b>Text to Speech Lamp 1.3</b> added
 * 28.10.2018 - <b>Text to Speech Lamp 1.2</b> added
 * 28.10.2018 - <b>Text to Speech Lamp 1.1</b> added
