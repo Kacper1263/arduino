@@ -3,6 +3,7 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 21.11.2018 - <b>TTS 2.0.0</b> added (VERY big update)
 * 17.11.2018 - <b>TTS 1.5.1</b> added
 * 16.11.2018 - <b>TTS 1.5.0</b> added
 * 03.11.2018 - <b>TTS 1.4.2</b> added
