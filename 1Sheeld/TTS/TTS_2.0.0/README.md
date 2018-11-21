@@ -32,12 +32,12 @@ I recommend using the 1Sheeld application on <b>iPhone</b> (better speech recogn
 
 ## Scheme:
 
-![Scheme error](https://github.com/Kacper1263/arduino/tree/master/1Sheeld/TTS/TTS_2.0.0/TTS_bb.png)
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/1Sheeld/TTS/TTS_2.0.0/TTS_bb.png)
 
 ## Preview
 
-![Scheme error](https://github.com/Kacper1263/arduino/tree/master/1Sheeld/TTS/TTS_2.0.0/Prev2.jpg)
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/1Sheeld/TTS/TTS_2.0.0/Prev2.jpg)
 
-![Scheme error](https://github.com/Kacper1263/arduino/tree/master/1Sheeld/TTS/TTS_2.0.0/Prev1.jpg)
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/1Sheeld/TTS/TTS_2.0.0/Prev1.jpg)
 
-![Scheme error](https://github.com/Kacper1263/arduino/tree/master/1Sheeld/TTS/TTS_2.0.0/Prev3.jpg)
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/1Sheeld/TTS/TTS_2.0.0/Prev3.jpg)
