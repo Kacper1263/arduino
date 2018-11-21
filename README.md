@@ -3,6 +3,7 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 17.11.2018 - <b>TTS 1.5.1</b> added
 * 16.11.2018 - <b>TTS 1.5.0</b> added
 * 03.11.2018 - <b>TTS 1.4.2</b> added
 * 02.11.2018 - <b>Text to Speech Lamp 1.4.1</b> added (optimization of dynamic memory usage from 80% to 40% and new name (TTS))
