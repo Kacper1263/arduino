@@ -4,6 +4,8 @@
 
 <b>Source code in "TempBox.ino"</b>
 
+Preview video: [See on Youtube](https://www.youtube.com/watch?v=wzQMx1bAYUY)
+
 ## Requires:
 
 * <b>2x DHT sensor (11 or 22)</b>
