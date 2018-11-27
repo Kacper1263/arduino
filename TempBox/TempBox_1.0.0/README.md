@@ -2,10 +2,7 @@
 
 (last update: 27.11.2018)
 
-
 <b>Source code in "TempBox.ino"</b>
-
-I recommend using the 1Sheeld application on <b>iPhone</b> (better speech recognition)
 
 ## Requires:
 
