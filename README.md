@@ -3,6 +3,7 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 01.12.2018 - <b>IoT 1.0.0</b> added
 * 27.11.2018 - <b>TempBox 1.0.0</b> added
 * 21.11.2018 - <b>TTS 2.0.0</b> added (VERY big update)
 * 17.11.2018 - <b>TTS 1.5.1</b> added
