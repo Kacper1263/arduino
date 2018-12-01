@@ -2,10 +2,9 @@
 
 (last update: 27.11.2018)
 
-
 <b>Source code in "TempBox.ino"</b>
 
-I recommend using the 1Sheeld application on <b>iPhone</b> (better speech recognition)
+Preview video: [See on Youtube](https://www.youtube.com/watch?v=wzQMx1bAYUY)
 
 ## Requires:
 
@@ -13,8 +12,10 @@ I recommend using the 1Sheeld application on <b>iPhone</b> (better speech recogn
 
 ## Preview
 
-![Scheme error](https://github.com/Kacper1263/arduino/tree/master/1Sheeld/TTS/TTS_2.0.0/Prev2.jpg)
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/TempBox/TempBox_1.0.0/Prev1.jpg)
 
-![Scheme error](https://github.com/Kacper1263/arduino/tree/master/1Sheeld/TTS/TTS_2.0.0/Prev1.jpg)
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/TempBox/TempBox_1.0.0/Prev2.jpg)
 
-![Scheme error](https://github.com/Kacper1263/arduino/tree/master/1Sheeld/TTS/TTS_2.0.0/Prev3.jpg)
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/TempBox/TempBox_1.0.0/Prev3.jpg)
+
+![Scheme error](https://github.com/Kacper1263/arduino/blob/master/TempBox/TempBox_1.0.0/Prev4.jpg)
