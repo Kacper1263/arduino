@@ -1,13 +1,62 @@
-
+#include <SPI.h>
 #include <LiquidCrystal.h>
 #include <WiFiEsp.h>
 #include <WiFiEspClient.h>
 #include <WiFiEspUdp.h>
 #include <PubSubClient.h>
-#include <SPI.h>
 
-char ssid[] = "Nimnul-2.4GHz"; // your network SSID (name)
-char pass[] = "XXXXXXXXXXXXX"; // your network password
+byte p20[8] = {
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+};
+byte p40[8] = {
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+};
+byte p60[8] = {
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+};
+byte p80[8] = {
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+};
+byte p100[8] = {
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+};
+
+int loadingProgress;
+int i = 0;
+
+// WiFi configuration
+char ssid[] = "Kacper Wi-Fi"; // your network SSID (name)
+char pass[] = "7VRdsx1A@"; // your network password
 char server[] = "broker.hivemq.com"; // your network password
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
@@ -22,6 +71,13 @@ void setup() {
     lcd.begin(16, 2);
     lcd.clear();
     lcd.print("Loading: ");
+    
+    lcd.createChar(0, p20);
+    lcd.createChar(1, p40);
+    lcd.createChar(2, p60);
+    lcd.createChar(3, p80);
+    lcd.createChar(4, p100);
+
     delay(1500);
     lcd.clear();
     // initialize serial for debugging
@@ -31,15 +87,20 @@ void setup() {
     // initialize ESP module
     lcd.setCursor(0, 0);
     lcd.print("ESP initialize  ");
-    lcd.setCursor(0, 1);
-    lcd.print("40%");
-
+    lcd.setCursor(12, 1);
+    lcd.print("0%");
+    loadingProgress = 5;
+    
     WiFi.init(&Serial1);
+
+    lcd.setCursor(12, 1);
+    lcd.print("40%");
+    printLoadingBar();
     
     lcd.setCursor(0, 0);
     lcd.print("Connect to WiFi ");
-    lcd.setCursor(0, 1);
-    lcd.print("65%");
+    loadingProgress = 8;
+        
     // check for the presence of the shield
     if (WiFi.status() == WL_NO_SHIELD) {
         Serial.println("WiFi shield not present");
@@ -55,20 +116,29 @@ void setup() {
         status = WiFi.begin(ssid, pass);
     }
 
+    lcd.setCursor(12, 1);
+    lcd.print("60%");
+    printLoadingBar();
+
     lcd.setCursor(0, 0);
     lcd.print("Connect to MQTT ");
-    lcd.setCursor(0, 1);
-    lcd.print("80%");
-
+    loadingProgress = 10;
+    
     Serial.println("You're connected to the network");
 
     //connect to MQTT server
     client.setServer(server , 1883);
     client.setCallback(callback);
+
+    lcd.setCursor(12, 1);
+    lcd.print("80%");
+    printLoadingBar();
     
     lcd.setCursor(0, 0);
     lcd.print("Connect to MQTT ");
-    lcd.setCursor(0, 1);
+    loadingProgress = 10;
+    printLoadingBar();
+    lcd.setCursor(12, 1);
     lcd.print("100%");
     delay(400);
     lcd.clear();
@@ -102,16 +172,33 @@ void loop() {
     delay(250);
 }
 
+void printLoadingBar() {
+    lcd.setCursor(0, 1);
+    //lcd.print("                ");
+    
+    for (i; i<= loadingProgress; i++) {
+        for (int j=0; j<5; j++) {
+            lcd.setCursor(i, 1);
+            lcd.write(j);
+            delay(25);
+        }
+    }
+}
+
 void reconnect() {
     // Loop until we're reconnected
+    lcd.clear();
     while (!client.connected()) {
         Serial.print("Attempting connection ");
+        lcd.setCursor(0, 0);
+        lcd.print("Reconnecting!");
         // Attempt to connect, just a name to identify the client
         if (client.connect("AMega")) {
             Serial.println("connected");
-            // Once connected, publish an announcement…
+            lcd.clear();
+            // Once connected, publish an announcementÂ…
             client.publish("km/esp/data","ESP is ready");
-            // … and resubscribe
+            // Â… and resubscribe
             client.subscribe("km/esp/input", 0);
 
         }
