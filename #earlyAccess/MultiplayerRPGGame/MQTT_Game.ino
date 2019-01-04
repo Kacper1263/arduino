@@ -9,18 +9,29 @@ String enemyNick = "Szoox";
 //                                                      //
 // Server                                               //
 #define HOST_NAME "brocker.hivemq.com"
+char server[] = "brocker.hivemq.com";
+//                                                      //
+// WiFi                                 //
+char ssid[] = "Kacper Wi-Fi"; // your network SSID
+char pass[] = "7VRdsx1A@"; // your network password
+
 //------------------------------------------------------//
 
 
 
 #include <LiquidCrystal.h>
+#include <WiFiEsp.h>
+#include <WiFiEspClient.h>
+#include <WiFiEspUdp.h>
+#include <PubSubClient.h>
 
 #define btn1 10
 #define btn2 11
 
-
+// Enemy topic to connect on multiplayer
 String enemyTopic = String("MRG/multiplayer/" + enemyNick);
 
+// Game
 byte menuHome = 1;
 byte menuFight = 1;
 byte inGame = 0;
@@ -37,6 +48,16 @@ int easyEnemyHP = 100;
 byte leftOrRight = 0;
 byte crit = 0;
 
+// Wifi
+int status = WL_IDLE_STATUS; // the Wifi radio's status
+
+byte espReady = 0;          // ESP is ready to use or not
+
+// Initialize the Ethernet client object
+WiFiEspClient espClient;
+PubSubClient client(espClient);
+
+// Initalize LCD object
 LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
 
 byte leftArrow[] = {
@@ -49,7 +70,6 @@ byte leftArrow[] = {
   B00110,
   B00010
 };
-
 byte rightArrow[] = {
   B01000,
   B01100,
@@ -60,7 +80,6 @@ byte rightArrow[] = {
   B01100,
   B01000
 };
-
 byte potion[] = {
   B00000,
   B01010,
@@ -71,7 +90,6 @@ byte potion[] = {
   B11111,
   B01110
 };
-
 byte downArrow[] = {
   B00100,
   B00100,
@@ -82,6 +100,55 @@ byte downArrow[] = {
   B01110,
   B00100
 };
+
+// Loading bar
+byte p20[8] = {
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+    B10000,
+};
+byte p40[8] = {
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+    B11000,
+};
+byte p60[8] = {
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+    B11100,
+};
+byte p80[8] = {
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+    B11110,
+};
+byte p100[8] = {
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+    B11111,
+};
+int loadingProgress;
+int i = 0;
 
 void setup()
 {
@@ -95,7 +162,19 @@ void setup()
     lcd.createChar(3, potion);
     lcd.createChar(4, downArrow);
 
+    // Loading bar
+    lcd.createChar(5, p20);
+    lcd.createChar(6, p40);
+    lcd.createChar(7, p60);
+    lcd.createChar(8, p80);
+    lcd.createChar(9, p100);
+    
     randomSeed(analogRead(0));
+
+    // initialize serial for debugging
+    Serial.begin(115200);
+    // initialize serial for ESP module
+    Serial1.begin(115200);
 
     homeScr();
 }
@@ -124,7 +203,10 @@ void loop()
         gameMode1();
     }
     if (gameMode == 2) {
+        
+        
         gameMode2();
+        delay(100);
     }
 
 }
@@ -147,17 +229,6 @@ void homeScr(){
         }
     }
     delay(20);
-}
-
-void newMessage(String incomingTopic, String payload, byte qos, bool retained) {
-    if (enemyTopic == incomingTopic) {
-        if (String("ON") == payload) {
-            digitalWrite(13, HIGH);
-        }
-        else if (String("OFF") == payload) {
-            digitalWrite(13, LOW);
-        }
-    }
 }
 
 void gameMode1() {
@@ -215,9 +286,103 @@ void gameMode1() {
 }
 
 void gameMode2() {
-   
-        
+   if (espReady == 0){
+        lcd.clear();
+        lcd.print("Loading: ");
+
+        delay(1500);
+        lcd.clear();
+        // initialize ESP module
+        lcd.setCursor(0, 0);
+        lcd.print("ESP initialize  ");
+        lcd.setCursor(12, 1);
+        lcd.print("0%");
+        loadingProgress = 5;
     
+        WiFi.init(&Serial1);
+    
+        lcd.setCursor(12, 1);
+        lcd.print("40%");
+        printLoadingBar();
+        
+        lcd.setCursor(0, 0);
+        lcd.print("Connect to WiFi ");
+        loadingProgress = 8;
+            
+        // check for the presence of the shield
+        if (WiFi.status() == WL_NO_SHIELD) {
+            Serial.println("WiFi shield not present");
+            // don't continue
+            while (true);
+        }
+    
+        // attempt to connect to WiFi network
+        while (status != WL_CONNECTED) {
+            Serial.print("Attempting to connect to WPA SSID: ");
+            Serial.println(ssid);
+            // Connect to WPA/WPA2 network
+            status = WiFi.begin(ssid, pass);
+        }
+    
+        lcd.setCursor(12, 1);
+        lcd.print("60%");
+        printLoadingBar();
+    
+        lcd.setCursor(0, 0);
+        lcd.print("Connect to MQTT ");
+        loadingProgress = 10;
+        
+        Serial.println("You're connected to the network");
+    
+        //connect to MQTT server
+        client.setServer(server , 1883);
+        client.setCallback(callback);
+        client.connect("AMegaMRG");
+        
+        lcd.setCursor(12, 1);
+        lcd.print("80%");
+        printLoadingBar();
+        
+        lcd.setCursor(0, 0);
+        lcd.print("Connect to MQTT ");
+        loadingProgress = 10;
+        printLoadingBar();
+        lcd.setCursor(12, 1);
+        lcd.print("100%");
+        delay(400);
+        lcd.clear();
+        lcd.print("Connected");
+        delay(4000);
+
+        espReady = 1;
+        inGame = 1;
+   }
+
+  if (!client.connected() && espReady == 1) {
+          reconnect();
+        }
+        client.loop();
+   
+}
+
+//print any message received for subscribed topic
+void callback(char* topic, byte* payload, unsigned int length) {
+    payload[length] = '\0';
+    String value = String((char*)payload);
+   
+    Serial.println(value);
+    lcd.clear();
+    lcd.print(value);
+
+    if (value == "State" || value == "state") {
+        lcd.clear();
+        lcd.print("ESP is ready");
+        client.publish("km/esp/data", "ESP is still ready");
+    }
+    else
+    {
+        client.publish("km/esp/data", "OK");
+    }
 }
 
 void changeScene() {
@@ -520,3 +685,47 @@ void okGoNextLeftOrRight() {
     }
 }
 
+void printLoadingBar() {
+    lcd.setCursor(0, 1);
+    //lcd.print("                ");
+    int c=0;
+    for (i; i<= loadingProgress; i++) {
+        for (int j=0; j<5; j++) {
+            c++;
+            lcd.setCursor(i, 1);
+            c = j+5; 
+            lcd.write(c);
+            delay(25);
+        }
+    }
+}
+
+void reconnect() {
+    // Loop until we're reconnected
+    lcd.clear();
+    while (!client.connected()) {
+        Serial.print("Attempting connection ");
+        lcd.setCursor(0, 0);
+        lcd.print("Reconnecting!");
+        // Attempt to connect, just a name to identify the client
+        if (client.connect("AMegaMRG")) {
+            Serial.println("connected");
+            lcd.clear();
+            // Once connected, publish an announcement
+            client.publish("km/esp/data","ESP is ready");
+            //  and resubscribe
+            client.subscribe("km/esp/input", 0);
+
+        }
+        else {
+            Serial.print("failed");
+            lcd.setCursor(0, 1);
+            lcd.print("Failed!");
+            Serial.print(client.state());
+            Serial.println(" try again in 5 seconds");
+            // Wait 5 seconds before retrying
+            delay(5000);
+            lcd.clear();
+        }
+    }
+}
