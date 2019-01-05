@@ -1,4 +1,4 @@
-//------------------------------------------------------//
+﻿//------------------------------------------------------//
 //                   Configuration                      //
 //                                                      //
 // Your nick                                            //
@@ -8,15 +8,14 @@ String myNick = "Kacper1263";
 String enemyNick = "Szoox";
 //                                                      //
 // Server                                               //
-#define HOST_NAME "brocker.hivemq.com"
-char server[] = "brocker.hivemq.com";
+#define HOST_NAME "broker.hivemq.com"
+char server[] = "broker.hivemq.com";
 //                                                      //
 // WiFi                                 //
-char ssid[] = "Kacper Wi-Fi"; // your network SSID
-char pass[] = "7VRdsx1A@"; // your network password
+char ssid[] = "Nimnul-2.4GHz"; // your network SSID
+char pass[] = "Bmw318kr5092s"; // your network password
 
 //------------------------------------------------------//
-
 
 
 #include <LiquidCrystal.h>
@@ -154,7 +153,7 @@ void setup()
 {
     pinMode(btn1, INPUT_PULLUP);
     pinMode(btn2, INPUT_PULLUP);
-
+   
     lcd.begin(16, 2);
     lcd.clear();
     lcd.createChar(1, leftArrow);
@@ -168,7 +167,7 @@ void setup()
     lcd.createChar(7, p60);
     lcd.createChar(8, p80);
     lcd.createChar(9, p100);
-    
+
     randomSeed(analogRead(0));
 
     // initialize serial for debugging
@@ -181,7 +180,7 @@ void setup()
 
 void loop()
 {
-    
+
     if (digitalRead(btn1) == LOW && inGame == 0) {
         menuHome++;
         if (menuHome > 2) {
@@ -203,15 +202,15 @@ void loop()
         gameMode1();
     }
     if (gameMode == 2) {
-        
-        
+
+
         gameMode2();
         delay(100);
     }
 
 }
 
-void homeScr(){
+void homeScr() {
     lcd.setCursor(0, 0);
     lcd.print("Game mode:      ");
     if (menuHome == 1) {
@@ -267,7 +266,7 @@ void gameMode1() {
     if (inFight == 0) {
         changeScene();
     }
-    
+
     if (sceneNumber == 0 || sceneNumber == 1) {
         if (inFight == 0) {
             lcd.clear();
@@ -286,7 +285,7 @@ void gameMode1() {
 }
 
 void gameMode2() {
-   if (espReady == 0){
+    if (espReady == 0) {
         lcd.clear();
         lcd.print("Loading: ");
 
@@ -298,24 +297,24 @@ void gameMode2() {
         lcd.setCursor(12, 1);
         lcd.print("0%");
         loadingProgress = 5;
-    
+
         WiFi.init(&Serial1);
-    
+
         lcd.setCursor(12, 1);
         lcd.print("40%");
         printLoadingBar();
-        
+
         lcd.setCursor(0, 0);
         lcd.print("Connect to WiFi ");
         loadingProgress = 8;
-            
+
         // check for the presence of the shield
         if (WiFi.status() == WL_NO_SHIELD) {
             Serial.println("WiFi shield not present");
             // don't continue
             while (true);
         }
-    
+
         // attempt to connect to WiFi network
         while (status != WL_CONNECTED) {
             Serial.print("Attempting to connect to WPA SSID: ");
@@ -323,26 +322,27 @@ void gameMode2() {
             // Connect to WPA/WPA2 network
             status = WiFi.begin(ssid, pass);
         }
-    
+
         lcd.setCursor(12, 1);
         lcd.print("60%");
         printLoadingBar();
-    
+
         lcd.setCursor(0, 0);
         lcd.print("Connect to MQTT ");
         loadingProgress = 10;
-        
+
         Serial.println("You're connected to the network");
-    
+
         //connect to MQTT server
-        client.setServer(server , 1883);
+        client.setServer(server, 1883);
         client.setCallback(callback);
         client.connect("AMegaMRG");
-        
+        client.subscribe("km/esp/input", 0);
+
         lcd.setCursor(12, 1);
         lcd.print("80%");
         printLoadingBar();
-        
+
         lcd.setCursor(0, 0);
         lcd.print("Connect to MQTT ");
         loadingProgress = 10;
@@ -352,29 +352,34 @@ void gameMode2() {
         delay(400);
         lcd.clear();
         lcd.print("Connected");
-        delay(4000);
+        delay(1000);
 
         espReady = 1;
         inGame = 1;
-   }
 
-  if (!client.connected() && espReady == 1) {
-          reconnect();
-        }
-        client.loop();
-   
+        lcd.createChar(1, leftArrow);
+        lcd.createChar(2, rightArrow);
+        lcd.createChar(3, potion);
+        lcd.createChar(4, downArrow);
+    }
+
+    if (!client.connected() && espReady == 1) {
+        reconnect();
+    }
+    client.loop();
+
 }
 
 //print any message received for subscribed topic
 void callback(char* topic, byte* payload, unsigned int length) {
     payload[length] = '\0';
     String value = String((char*)payload);
-   
+
     Serial.println(value);
     lcd.clear();
     lcd.print(value);
 
-    if (value == "State" || value == "state") {
+    if (value == "/State" || value == "/state") {
         lcd.clear();
         lcd.print("ESP is ready");
         client.publish("km/esp/data", "ESP is still ready");
@@ -389,7 +394,7 @@ void changeScene() {
     sceneNumber = random(0, 4);
 }
 
-void fight(){
+void fight() {
 enemyMove:
     if (easyEnemyHP <= 0) {
         easyEnemyHP = 100;
@@ -509,7 +514,7 @@ enemyMove:
         lcd.print("Enemy move      ");
         delay(1500);
         easyEnemyAttack();
-        myHP = myHP- enemyDmg;
+        myHP = myHP - enemyDmg;
         lcd.setCursor(0, 1);
         if (crit == 1) {
             lcd.print("CRIT! ");
@@ -599,7 +604,7 @@ void hpPotionFound() {
     lcd.write(3);
     delay(2000);
     lcd.setCursor(0, 1);
-    lcd.print("HP +");        
+    lcd.print("HP +");
     lcd.print(giveHP);
     myHP = myHP + giveHP;
 
@@ -688,12 +693,12 @@ void okGoNextLeftOrRight() {
 void printLoadingBar() {
     lcd.setCursor(0, 1);
     //lcd.print("                ");
-    int c=0;
-    for (i; i<= loadingProgress; i++) {
-        for (int j=0; j<5; j++) {
+    int c = 0;
+    for (i; i <= loadingProgress; i++) {
+        for (int j = 0; j < 5; j++) {
             c++;
             lcd.setCursor(i, 1);
-            c = j+5; 
+            c = j + 5;
             lcd.write(c);
             delay(25);
         }
@@ -711,9 +716,10 @@ void reconnect() {
         if (client.connect("AMegaMRG")) {
             Serial.println("connected");
             lcd.clear();
-            // Once connected, publish an announcement
-            client.publish("km/esp/data","ESP is ready");
-            //  and resubscribe
+            lcd.print("connected");
+            // Once connected, publish an announcement
+            client.publish("km/esp/data", "ESP is ready");
+            //and resubscribe
             client.subscribe("km/esp/input", 0);
 
         }
