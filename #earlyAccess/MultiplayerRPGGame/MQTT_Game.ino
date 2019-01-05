@@ -1,4 +1,4 @@
-﻿//------------------------------------------------------//
+//------------------------------------------------------//
 //                   Configuration                      //
 //                                                      //
 // Your nick                                            //
@@ -12,8 +12,8 @@ String enemyNick = "Szoox";
 char server[] = "broker.hivemq.com";
 //                                                      //
 // WiFi                                 //
-char ssid[] = "Nimnul-2.4GHz"; // your network SSID
-char pass[] = "Bmw318kr5092s"; // your network password
+char ssid[] = "YourNetworkSSID"; // your network SSID
+char pass[] = "YourWiFiPassword"; // your network password
 
 //------------------------------------------------------//
 
