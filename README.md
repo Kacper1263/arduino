@@ -3,6 +3,7 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 05.01.2019 - <b>MQTT Game</b> update - fixed timeout when connecting to broker 
 * 01.12.2018 - <b>IoT 1.0.0</b> added
 * 27.11.2018 - <b>TempBox 1.0.0</b> added
 * 21.11.2018 - <b>TTS 2.0.0</b> added (VERY big update)
