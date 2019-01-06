@@ -70,9 +70,9 @@ byte buzzer = 22;
 int alarmState = 0;
 
 // WiFi configuration
-char ssid[] = "Nimnul-2.4GHz"; // your network SSID (name)
-char pass[] = "Bmw318kr5092s"; // your network password
-char server[] = "broker.hivemq.com"; // your network password
+char ssid[] = "YourNetworkSSID"; // your network SSID (name)
+char pass[] = "YourPassword"; // your network password
+char server[] = "broker.hivemq.com";
 int status = WL_IDLE_STATUS; // the Wifi radio's status
 
 // Initialize the Ethernet client object
