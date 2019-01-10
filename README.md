@@ -3,6 +3,7 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 10.01.2019 - <b>MQTT alarm 1.1.0</b> added
 * 06.01.2019 - <b>MQTT alarm 1.0.0</b> added
 * 05.01.2019 - <b>MQTT Game</b> update - fixed timeout when connecting to broker 
 * 01.12.2018 - <b>IoT 1.0.0</b> added
