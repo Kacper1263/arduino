@@ -180,7 +180,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
         lcd.setCursor(0, 1);
         lcd.print("Budzik ");
         lcd.print(propablyCurrentTime);
-        while (alarmState == 1 && itsTimeToStop <= 8) {
+        while (alarmState == 1 && itsTimeToStop <= 40) {
             digitalWrite(buzzer, HIGH);
             delay(250);
             digitalWrite(buzzer, LOW);
