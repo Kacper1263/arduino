@@ -1,4 +1,4 @@
-//------------------------------------------------------//
+﻿//------------------------------------------------------//
 //                   Configuration                      //
 //                                                      //
 // Your nick                                            //
@@ -12,13 +12,14 @@ String enemyNick = "Szoox";
 char server[] = "broker.hivemq.com";
 //                                                      //
 // WiFi                                 //
-char ssid[] = "YourNetworkSSID"; // your network SSID
-char pass[] = "YourWiFiPassword"; // your network password
+char ssid[] = "Nimnul-2.4GHz"; // your network SSID
+char pass[] = "Bmw318kr5092s"; // your network password
 
 //------------------------------------------------------//
 
 
 #include <LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
 #include <WiFiEsp.h>
 #include <WiFiEspClient.h>
 #include <WiFiEspUdp.h>
@@ -57,7 +58,8 @@ WiFiEspClient espClient;
 PubSubClient client(espClient);
 
 // Initalize LCD object
-LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+// LiquidCrystal lcd(7, 6, 5, 4, 3, 2); Normal LCD
+LiquidCrystal_I2C lcd(0x27, 20, 4);        // I2C
 
 byte leftArrow[] = {
   B00010,
@@ -154,19 +156,15 @@ void setup()
     pinMode(btn1, INPUT_PULLUP);
     pinMode(btn2, INPUT_PULLUP);
    
-    lcd.begin(16, 2);
-    lcd.clear();
-    lcd.createChar(1, leftArrow);
-    lcd.createChar(2, rightArrow);
-    lcd.createChar(3, potion);
-    lcd.createChar(4, downArrow);
+    /*
+    Normal LCD
+        lcd.begin(16, 2);
+        lcd.clear();
+    */
 
-    // Loading bar
-    lcd.createChar(5, p20);
-    lcd.createChar(6, p40);
-    lcd.createChar(7, p60);
-    lcd.createChar(8, p80);
-    lcd.createChar(9, p100);
+    // I2C Lcd
+    lcd.init();
+    lcd.backlight();
 
     randomSeed(analogRead(0));
 
@@ -232,6 +230,13 @@ void homeScr() {
 
 void gameMode1() {
     if (inGame == 0) {
+        
+        // Custom Chars in game
+        lcd.createChar(1, leftArrow);
+        lcd.createChar(2, rightArrow);
+        lcd.createChar(3, potion);
+        lcd.createChar(4, downArrow);
+        
         lcd.setCursor(0, 0);
         lcd.print("Single player   ");
         lcd.setCursor(0, 1);
@@ -286,6 +291,14 @@ void gameMode1() {
 
 void gameMode2() {
     if (espReady == 0) {
+
+        // Loading bar Chars
+        lcd.createChar(5, p20);
+        lcd.createChar(6, p40);
+        lcd.createChar(7, p60);
+        lcd.createChar(8, p80);
+        lcd.createChar(9, p100);
+
         lcd.clear();
         lcd.print("Loading: ");
 

@@ -3,6 +3,8 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 25.01.2019 - <b>MQTT Game</b> update - adaptation of the code to LCD I2C 20x4
+* 25.01.2019 - <b>MQTT alarm 1.2.0</b> added (adaptation of the code to LCD I2C 20x4)
 * 10.01.2019 - <b>MQTT alarm 1.1.0</b> added
 * 06.01.2019 - <b>MQTT alarm 1.0.0</b> added
 * 05.01.2019 - <b>MQTT Game</b> update - fixed timeout when connecting to broker 
