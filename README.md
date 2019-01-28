@@ -3,6 +3,7 @@ Arduino projects by Kacper Marcinkiewicz
 
 ## Change log:
 
+* 28.01.2019 - <b>MQTT alarm 1.2.1</b> added (bug fixes)
 * 25.01.2019 - <b>MQTT Game</b> update - adaptation of the code to LCD I2C 20x4
 * 25.01.2019 - <b>MQTT alarm 1.2.0</b> added (adaptation of the code to LCD I2C 20x4)
 * 10.01.2019 - <b>MQTT alarm 1.1.0</b> added
