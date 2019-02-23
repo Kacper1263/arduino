@@ -1,0 +1,38 @@
+{
+  "configurations": [
+    {
+      "name": "Visual Micro",
+      "intelliSenseMode": "msvc-x64",
+      "includePath": [
+        "${projectRoot}..\\MQTT_alarm",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries\\SPI\\src",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\libraries\\LiquidCrystal\\src",
+        "${projectRoot}..\\libraries\\WiFiEsp\\src",
+        "${projectRoot}..\\libraries\\WiFiEsp\\src\\utility",
+        "${projectRoot}..\\libraries\\PubSubClient\\src",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\libraries",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\libraries",
+        "${projectRoot}..\\libraries",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\yun",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include\\avr",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.8.1\\include",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.9.2\\include",
+        "${projectRoot}..\\..\\..\\..\\..\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\4.9.3\\include"
+      ],
+      "defines": [
+        "__AVR_ATmega32u4__",
+        "__AVR_ATmega32U4__",
+        "F_CPU=16000000L",
+        "ARDUINO=10808",
+        "ARDUINO_AVR_YUN",
+        "ARDUINO_ARCH_AVR",
+        "USB_VID=0x2341",
+        "USB_PID=0x8041",
+        "__cplusplus=201103L",
+        "_VMICRO_INTELLISENSE"
+      ]
+    }
+  ]
+}
